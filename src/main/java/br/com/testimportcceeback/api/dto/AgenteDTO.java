@@ -1,5 +1,7 @@
 package br.com.testimportcceeback.api.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlCData;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
@@ -9,7 +11,12 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -22,7 +29,6 @@ public class AgenteDTO implements Serializable {
     private Long codigo;
 
     @JacksonXmlProperty
-    @DateTimeFormat(pattern = "yyyy-MM-ddTHH:mm:ss.SSS")
     private OffsetDateTime data;
 
     @JacksonXmlProperty(localName = "regiao")

@@ -10,6 +10,5 @@ import java.util.List;
 
 @Repository
 public interface AgenteRepository extends JpaRepository<Agente, Long> {
-    @Query(value = "SELECT a FROM Agente a WHERE a.codigo = :codigo AND a.regiao")
-    List<Agente> findAgenteByCodigoAndRegiaoSigla(Long codigo, String sigla);
+    List<Agente> findAgenteByCodigo(Long codigo);
 }

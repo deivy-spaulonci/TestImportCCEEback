@@ -1,6 +1,7 @@
 package br.com.testimportcceeback.api.mapper;
 
 import br.com.testimportcceeback.api.dto.AgenteDTO;
+import br.com.testimportcceeback.api.dto.responseJson.AgenteDTOJson;
 import br.com.testimportcceeback.domain.model.Agente;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -15,4 +16,6 @@ public interface AgenteMapper {
     List<AgenteDTO> toDtoList(List<Agente> agentes);
     List<Agente> toModelList(List<AgenteDTO> agenteDTOS);
 
+    AgenteDTOJson toDTOJson(Agente agente);
+    List<AgenteDTOJson> toDtoListJson(List<Agente> agentes);
 }

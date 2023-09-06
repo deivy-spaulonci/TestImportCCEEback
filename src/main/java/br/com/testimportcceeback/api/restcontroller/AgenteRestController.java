@@ -8,6 +8,7 @@ import br.com.testimportcceeback.domain.model.Agente;
 import br.com.testimportcceeback.domain.model.Regiao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,8 +22,8 @@ public class AgenteRestController {
     AgenteService agenteService;
     private static final AgenteMapper agenteMapper = AgenteMapper.INSTANCE;
 
-    @PostMapping
-    public ResponseEntity<?> importAgents(@RequestBody AgentesDTO agentesDTO){
+    @PostMapping("/importar")
+    public ResponseEntity<Object> importAgents(@RequestBody AgentesDTO agentesDTO){
 
         if(agentesDTO.getAgente().isEmpty())
             return ResponseEntity
@@ -32,13 +33,16 @@ public class AgenteRestController {
         List<Agente> agentes = agenteService.saveListAgents(agenteMapper.toModelList(agentesDTO.getAgente()));
         agentes.forEach(agenteDTO -> System.out.println("Código do agente: " + agenteDTO.getCodigo()));
 
-        return ResponseEntity.status(HttpStatus.OK).body("Agentes salvos");
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-//    @GetMapping("/{codigo}/{regiao}")
-//    public ResponseEntity<List<AgenteDTO>> findAgenteByCodigoAndRegial(
-//            @PathVariable("codigo") Long codigo,
-//            @PathVariable("regiao") String regiao){
-//        return agenteService.findAgenteByCodigoAndRegial(codigo, Regiao.builder().sigla(regiao).build());
-//    }
+    @GetMapping(value = "/{codigo}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> findAgenteByCodigoAndRegial(@PathVariable("codigo") Long codigo){
+        List<Agente> agentes = agenteService.findAgenteByCodigo(codigo);
+
+        if(agentes.isEmpty())
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Agente(s) não foi encontrada!");
+
+        return ResponseEntity.ok(agenteMapper.toDtoListJson(agentes));
+    }
 }

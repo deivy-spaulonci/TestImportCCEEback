@@ -16,11 +16,20 @@ public class AgenteService {
 
     /**
      * salvar lista agentes
-     * @param agentes
+     * @param List<agente>
      * @return List<Agente>
      */
     public List<Agente> saveListAgents(List<Agente> agentes){
         return agenteRepository.saveAll(agentes);
+    }
+
+    /**
+     * encontar agente pelo codigo
+     * @param codigo
+     * @return List<Agente>
+     */
+    public List<Agente> findAgenteByCodigo(Long codigo){
+        return agenteRepository.findAgenteByCodigo(codigo);
     }
 
     /**
