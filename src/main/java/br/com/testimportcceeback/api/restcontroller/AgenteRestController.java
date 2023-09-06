@@ -1,11 +1,9 @@
 package br.com.testimportcceeback.api.restcontroller;
 
-import br.com.testimportcceeback.api.dto.AgenteDTO;
 import br.com.testimportcceeback.api.dto.AgentesDTO;
 import br.com.testimportcceeback.api.mapper.AgenteMapper;
-import br.com.testimportcceeback.business.AgenteService;
+import br.com.testimportcceeback.business.service.AgenteService;
 import br.com.testimportcceeback.domain.model.Agente;
-import br.com.testimportcceeback.domain.model.Regiao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

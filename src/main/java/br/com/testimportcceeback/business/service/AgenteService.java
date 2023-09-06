@@ -1,4 +1,4 @@
-package br.com.testimportcceeback.business;
+package br.com.testimportcceeback.business.service;
 
 import br.com.testimportcceeback.domain.model.Agente;
 import br.com.testimportcceeback.domain.model.Regiao;
@@ -33,12 +33,10 @@ public class AgenteService {
     }
 
     /**
-     * consulta agente por codigo e regiao
-     * @param codigo
-     * @param regiao
-     * @return List<Agente>
+     * salvar agente
+     * @param Agente
      */
-//    public List<Agente> findAgenteByCodigoAndRegial(Long codigo, Regiao regiao){
-//        return agenteRepository.findAgenteByCodigoAndRegiao(codigo, regiao);
-//    }
+    public Agente salvarAgente(Agente agente){
+        return agenteRepository.save(agente);
+    }
 }
